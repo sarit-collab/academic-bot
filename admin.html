@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>หลังบ้านน้อง Nora · กองบริหารงานวิชาการ</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#17503F">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Mitr:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body class="admin-page">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" id="headerMascot" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="brand-org">หลังบ้าน · กองบริหารงานวิชาการ</span>
+          <strong class="brand-title">สอนน้อง Nora</strong>
+        </div>
+      </div>
+      <nav class="topbar-actions">
+        <a class="ghost-btn" href="index.html" target="_blank" rel="noopener"><span>เปิดหน้าแชต</span></a>
+        <button class="ghost-btn" id="btnLogout" type="button" hidden><span>ออกจากระบบ</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- login -->
+  <main class="login" id="loginView" hidden>
+    <form class="login-card" id="loginForm">
+      <div class="login-mascot" id="loginMascot"></div>
+      <h1>เข้าสู่ระบบหลังบ้าน</h1>
+      <p class="muted">สำหรับเจ้าหน้าที่กองบริหารงานวิชาการ</p>
+      <input type="password" id="password" placeholder="รหัสผ่าน" autocomplete="current-password" required>
+      <button class="btn btn-primary" type="submit">เข้าสู่ระบบ</button>
+      <p class="form-error" id="loginError" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- app -->
+  <main class="admin" id="appView" hidden>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="docs" role="tab">📚 เอกสารความรู้</button>
+      <button class="tab" data-tab="logs" role="tab">💬 คำถามจากผู้ใช้</button>
+      <button class="tab" data-tab="stats" role="tab">📊 สถิติและค่าใช้จ่าย</button>
+    </nav>
+
+    <!-- docs -->
+    <section class="panel" id="tab-docs">
+      <div class="kb-summary" id="kbSummary"></div>
+
+      <div class="card upload-card">
+        <div class="card-head">
+          <h2>เพิ่มเอกสารให้น้องอ่าน</h2>
+          <button class="btn btn-ghost" id="btnAddText" type="button">✍️ พิมพ์ข้อมูลเอง</button>
+        </div>
+        <label class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv,.png,.jpg,.jpeg,.webp">
+          <div class="dz-icon">📥</div>
+          <strong>ลากไฟล์มาวาง หรือคลิกเพื่อเลือกไฟล์</strong>
+          <span>PDF, Word, Excel, PowerPoint, รูปภาพ, ข้อความ · ไม่เกิน 25 MB ต่อไฟล์</span>
+        </label>
+        <div class="queue" id="queue"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <h2>เอกสารทั้งหมด</h2>
+          <input type="search" id="docSearch" class="search" placeholder="ค้นหาเอกสาร…">
+        </div>
+        <div class="doc-list" id="docList"><p class="muted">กำลังโหลด…</p></div>
+      </div>
+    </section>
+
+    <!-- logs -->
+    <section class="panel" id="tab-logs" hidden>
+      <div class="card">
+        <div class="card-head">
+          <h2>คำถามล่าสุด</h2>
+          <div class="seg" id="logFilter">
+            <button data-f="all" class="active">ทั้งหมด</button>
+            <button data-f="unknown">ตอบไม่ได้/ได้บางส่วน</button>
+            <button data-f="bad">ได้ 👎</button>
+          </div>
+        </div>
+        <p class="muted small">คำถามที่น้องตอบไม่ได้ คือสัญญาณว่าควรเพิ่มเอกสารเรื่องนั้น</p>
+        <div class="log-list" id="logList"></div>
+      </div>
+    </section>
+
+    <!-- stats -->
+    <section class="panel" id="tab-stats" hidden>
+      <div class="kpis" id="kpis"></div>
+      <div class="card">
+        <h2>จำนวนคำถาม 14 วันล่าสุด</h2>
+        <div class="day-table" id="dayTable"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- modal -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <h2 id="modalTitle"></h2>
+        <button class="icon-btn" data-close aria-label="ปิด">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFoot"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="config.js?v=1"></script>
+  <script src="common.js?v=1"></script>
+  <script src="mascot.js?v=1"></script>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>ถามน้อง Nora · กองบริหารงานวิชาการ มหาวิทยาลัยศิลปากร</title>
+  <meta name="description" content="ผู้ช่วยตอบคำถามเรื่องการลงทะเบียนเรียน การชำระเงิน ปฏิทินการศึกษา ระเบียบ และคำร้องต่างๆ">
+  <meta name="theme-color" content="#17503F">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600&family=Mitr:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body class="chat-page">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark" id="headerMascot" aria-hidden="true"></div>
+        <div class="brand-text">
+          <span class="brand-org">กองบริหารงานวิชาการ · มหาวิทยาลัยศิลปากร</span>
+          <strong class="brand-title">ถามน้อง Nora</strong>
+        </div>
+      </div>
+      <nav class="topbar-actions">
+        <button class="ghost-btn" id="btnKnows" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <span>น้องรู้เรื่องอะไรบ้าง</span>
+        </button>
+        <button class="ghost-btn" id="btnReset" type="button" title="เริ่มคุยใหม่">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>เริ่มใหม่</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="demo-banner" id="demoBanner" hidden>โหมดตัวอย่าง — ยังไม่ได้เชื่อมต่อระบบจริง คำตอบเป็นข้อความสาธิต</div>
+
+  <main class="layout">
+    <aside class="stage" aria-label="น้อง Nora">
+      <div class="stage-card">
+        <div class="stage-glow"></div>
+        <div class="speech" id="speech" aria-live="polite">สวัสดีครับ! ถามเรื่องงานวิชาการได้เลยนะครับ</div>
+        <div class="stage-mascot" id="stageMascot"></div>
+        <div class="stage-name">
+          <strong>น้อง Nora</strong>
+          <span>ผู้ช่วยงานทะเบียนและวิชาการ</span>
+        </div>
+      </div>
+
+      <div class="topics">
+        <h2 class="side-title">หมวดคำถาม</h2>
+        <div class="topic-grid" id="topicGrid"></div>
+      </div>
+
+      <div class="contact-card side-contact">
+        <div>
+          <strong>คุยกับเจ้าหน้าที่</strong>
+          <span id="contactNoteSide"></span>
+        </div>
+        <a class="fb-btn" id="fbSide" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v8h4v-8h3l.5-4h-3.5V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+          Facebook
+        </a>
+      </div>
+    </aside>
+
+    <section class="chat" aria-label="ห้องแชต">
+      <div class="messages" id="messages" aria-live="polite"></div>
+      <form class="composer" id="composer" autocomplete="off">
+        <textarea id="input" rows="1" maxlength="1500" placeholder="พิมพ์คำถามที่นี่…" aria-label="พิมพ์คำถาม"></textarea>
+        <button class="send-btn" id="sendBtn" type="submit" aria-label="ส่งคำถาม">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-6 16-3-7z" fill="currentColor"/></svg>
+        </button>
+      </form>
+      <p class="disclaimer">น้อง Nora ตอบจากเอกสารทางการของมหาวิทยาลัย แต่อาจผิดพลาดได้ เรื่องสำคัญโปรดตรวจสอบกับเอกสารต้นฉบับหรือเจ้าหน้าที่ · กรุณาอย่าพิมพ์ข้อมูลส่วนตัว เช่น เลขบัตรประชาชน รหัสผ่าน</p>
+    </section>
+  </main>
+
+  <div class="drawer" id="knowsDrawer" hidden>
+    <div class="drawer-backdrop" data-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="knowsTitle">
+      <div class="drawer-head">
+        <h2 id="knowsTitle">เอกสารที่น้อง Nora อ่านแล้ว</h2>
+        <button class="icon-btn" data-close aria-label="ปิด">✕</button>
+      </div>
+      <div class="drawer-body" id="knowsBody"></div>
+    </div>
+  </div>
+
+  <script src="config.js?v=1"></script>
+  <script src="common.js?v=1"></script>
+  <script src="mascot.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
