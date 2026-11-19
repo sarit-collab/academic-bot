@@ -9,7 +9,7 @@ window.APP_CONFIG = {
 
   // ช่องทางติดต่อเมื่อบอทตอบไม่ได้
   CONTACT: {
-    facebookUrl: 'https://www.facebook.com/',
+    facebookUrl: 'https://www.facebook.com/share/1EHZYRVc3Y/?mibextid=wwXIfr',
     facebookName: 'Facebook กองบริหารงานวิชาการ',
     note: 'ส่งข้อความหาเจ้าหน้าที่ได้ในวันและเวลาราชการ',
   },
